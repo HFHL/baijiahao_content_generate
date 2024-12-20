@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>处理结果</title>
+<style>
+  .directory-level { margin-bottom: 30px; }
+  .image-block { margin-bottom: 20px; display: flex; align-items: flex-start; }
+  .image-block img { max-width: 200px; margin-right: 10px; border:1px solid #ccc; }
+  .generated-text { white-space: pre-wrap; background:#f8f8f8; padding:10px; border:1px solid #ccc; }
+</style>
+</head>
+<body>
+<h1>处理结果</h1>
+<div id="result-container">
+  {% for item in result_data %}
+    <div class="directory-level">
+      <h2>{{ item.path }}</h2>
+      {% for img in item.images %}
+      <div class="image-block">
+        <img src="/{{ item.path | replace('\\','/') }}/{{ img.image }}" alt="{{ img.image }}">
+        <div class="generated-text">{{ img.text }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  {% endfor %}
+</div>
+</body>
+</html>
